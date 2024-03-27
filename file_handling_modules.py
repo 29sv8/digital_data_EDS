@@ -30,6 +30,11 @@ def download_from_url(url, filename):
             >> the information
         Prints the message that the file was downloaded succesfully and the information.
         ----
+    Versioning
+        ----
+        Python: 3.10.9
+        urllib included in Python version
+        ----
     """
     import urllib.request
     out, response = urllib.request.urlretrieve(url, filename)
