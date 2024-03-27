@@ -1,34 +1,41 @@
 # Description: 
-#   A module containing functions for the retrieval of files from external sources.
+#   A module containing functions for the retrieval of files from external 
+#   sources. The functions defined in this module may be extended and updated
+#   over time.
 # Author:
 #   Sanne Vreugdenhil
 # Date of creation:
 #   27-03-2024
 
-def download_from_url(url, filename):
+def download_from_url_a(url, filename):
     """
     Description
         ----
-        This function uses the urllib.request module to download a file from a given URL link.
-        The file is downloaded into the current directory if you provide a just a filename. 
-        A filepath (absolute or relative) can also be provided instead.
+        This function uses the urllib.request module that is included in Python 
+        to download a file from a given URL link. The file is downloaded into 
+        the current directory if you provide a just a filename. A filepath 
+        (absolute or relative) can also be provided instead.
         ----
     Parameters
         ----
         url
             >> the url link from which to download the file
         filename
-            >> the name the file is to be called in the current working directory
-            >> a filepath (absolute or relative) can be provided instead of a filename
+            >> the name the file is to be called in the current working 
+            directory
+            >> a filepath (absolute or relative) can be provided instead of a 
+            filename
         ----
     Returns
         ----
-        urllib.request.urlretrieve returns a tuple of the filename and some information
+        urllib.request.urlretrieve returns a tuple of the filename and some 
+        information.
         out
             >> the filename
         response
             >> the information
-        Prints the message that the file was downloaded succesfully and the information.
+        Prints the message that the file was downloaded succesfully and the 
+        information.
         ----
     Versioning
         ----
@@ -42,4 +49,39 @@ def download_from_url(url, filename):
     print(response)
     return out, response
  
- 
+def download_from_url_b(url, filename):
+    """
+    IMPORTANT NOTE: 
+    download requests module into your environment before using this function
+    Description
+        ----
+        This function uses the requests module to download a file from a 
+        given URL link. The file is downloaded into the current directory if 
+        you provide a just a filename. A filepath (absolute or relative) can 
+        also be provided instead.
+        ----
+    Parameters
+        ----
+        url
+            >> the url link from which to download the file
+        filename
+            >> the name the file is to be called in the current working 
+            directory
+            >> a filepath (absolute or relative) can be provided instead of a 
+            filename
+        ----
+    Returns
+        ----
+        Prints a statement that the file was succesfully created.
+        ----
+    Versioning
+        ----
+        Python: 3.10.9
+        requests: 2.31.0
+        ----
+    """
+    import requests
+    r = requests.get(url)
+    with open(filename, "wb") as f:
+        f.write(r.content)
+    print(f"The file {filename} was succesfully created.")
