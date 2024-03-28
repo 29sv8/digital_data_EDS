@@ -52,7 +52,6 @@ def download_from_url_a(url, filename):
     out, response = urllib.request.urlretrieve(url, filename) 
     print(f"Successfully downloaded {out}\n")
     print(response)
-    return out, response
  
 def download_from_url_b(url, filename):
     """
@@ -138,6 +137,7 @@ def check_ftp_content(
         Python: 3.10.9
         ftplib included in Python version
     """
+    import ftplib
     ftp = ftplib.FTP_TLS(server)
     ftp.login() 
     ftp.prot_p() 
@@ -155,7 +155,10 @@ def file_from_ftp(
     Description
         ----
         This function uses the ftplib module that is included in Python (
-        version 3.10.9) to download a specific file from a FTP server.
+        version 3.10.9) to download a specific file from a FTP server. The file
+        is always downloaded to the current working directory, it is not 
+        possible to specify a directory. Use os.rename() to move the file
+        to the desired directory.
         When dowloading files from a public server, username and password are
         usually both "anonymous". When a username and password are not provided,
         this function automatically uses "anonymous" as both username and
@@ -181,8 +184,7 @@ def file_from_ftp(
     Returns
         ----
         Prints a statement that the file was succesfully downloaded and 
-        downloads the file to the current working directory (if only filename 
-        specified) or the directory that was specified.
+        downloads the file to the current working directory.
         ----
     Versioning
         ----
