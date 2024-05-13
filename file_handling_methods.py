@@ -242,15 +242,15 @@ def extract_zip(file):
     
     files = [] # create a list to append files from inside the zip to
     
-    for filename in zipShape.namelist(): # obtain filenames 
+    for filename in zipShape.namelist(): # obtain filenames and name files
         filename = f"{filename}"             # get actual filename
         out = open(filename, "wb")  
         out.write(zipShape.read(filename))
         out.close()
         files.append(filename)               # append filenames to the list
     
-    folder_name = filename.split(".")[0] # create dirname from filename
-    os.mkdir(folder_name)                # create a new folder
+    folder_name = filename.split(".")[0] # create a directory name
+    os.mkdir(folder_name)                # create a new directory
     for file in files:
         os.rename(f"{file}", f"{folder_name}/{file}") # move files to dir
 # ==============================================================================
